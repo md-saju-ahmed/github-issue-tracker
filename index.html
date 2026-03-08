@@ -15,6 +15,42 @@
 </head>
 <body class="bg-[#f8fafc] mx-auto py-8 md:py-15 px-4 w-full min-h-screen">
 
+    <!-- Sign In -->
+    <section class="bg-white flex justify-center items-center p-6 md:p-8 mx-auto my-0 rounded-lg shadow-[0px_5px_10px_0px_#00000014] max-w-[520px] w-full">
+        <div class="flex justify-center flex-col gap-6 w-full">
+            <img class="mx-auto w-20 md:w-25" alt="GitHub Issue Tracker" src="./assets/img/github-logo.svg">
+            <div class="text-center space-y-1">
+                <h1 class="text-xl md:text-2xl font-semibold leading-7.5">GitHub Issues Tracker</h1>
+                <p class="text-[#64748b] leading-5">Sign in to manage your issues</p>
+            </div>
+            <fieldset class="fieldset">
+                <label for="login-id" class="block text-[16px] font-medium leading-[19px] mb-2">Username</label>
+                <input id="login-id" class="border border-[#e4e4e7] rounded-lg p-4 h-12 w-full" type="text" placeholder="Enter Username" value="">
+                <label for="" class="block text-[14px] text-[#4A00FF] leading-[17px] mt-1.5">Default: admin</label>
+
+                <label for="login-pass" class="block text-[16px] font-medium leading-[19px] mt-4 mb-2">Password</label>
+                <input id="login-pass" class="border border-[#e4e4e7] rounded-lg p-4 h-12 w-full" type="password" placeholder="Enter Password" value="">
+                <label for="" class="block text-[14px] text-[#4A00FF] leading-[17px] mt-1.5">Default: admin123</label>
+
+                <button id="login-btn" class="bg-[#4A00FF] hover:bg-[#3C00D6] text-white font-semibold mt-6 h-12 w-full cursor-pointer rounded-lg border-0 shadow-none">Sign In</button>
+            </fieldset>
+            <div class="flex items-center">
+                <div class="grow border-t border-[#E4E4E7]"></div>
+                <span class="mx-2 text-[#1f2937]">OR</span>
+                <div class="grow border-t border-[#E4E4E7]"></div>
+            </div>
+            <div class="flex flex-col w-full gap-2">
+                <div class="text-[14px] text-[#64748b] text-center leading-[17px]">Demo Credentials:</div>
+                <div class="bg-[#f8fafc] rounded-lg p-6">
+                    <p class="text-center leading-6">
+                        <strong>Username:</strong> admin <br>
+                        <strong>Password:</strong> admin123
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Scripts -->
     <script src="./assets/js/app.js"></script>
 </body>
