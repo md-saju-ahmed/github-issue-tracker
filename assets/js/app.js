@@ -88,3 +88,96 @@ if (searchInput) {
         }, 100);
     });
 };
+
+// Issue label's style
+const labelStyles = {
+    bug: { color: "#B91C1C", bg: "#FEE2E2", border: "#FCA5A5", icon: "bug.svg" },
+    enhancement: { color: "#1D4ED8", bg: "#DBEAFE", border: "#93C5FD", icon: "rocket.svg" },
+    documentation: { color: "#6B21A8", bg: "#F3E8FF", border: "#D8B4FE", icon: "book.svg" },
+    "help wanted": { color: "#D97706", bg: "#FFF8DB", border: "#FDE68A", icon: "help.svg" },
+    "good first issue": { color: "#047857", bg: "#D1FAE5", border: "#6EE7B7", icon: "tree.svg" },
+};
+
+// Create label html
+const createLabels = (arr) => {
+    const htmlElements = arr.map((label) => {
+        const style = labelStyles[label];
+
+        if (!style) {
+            return "";
+        };
+
+        return `
+        <div class="flex justify-center items-center gap-1 p-2 h-6 border rounded-[100px] border-[${style.border}] bg-[${style.bg}]">
+            <img src="./assets/img/${style.icon}" alt="" width="12" height="12">
+            <span class="text-[12px] text-[${style.color}] uppercase">${label}</span>
+        </div>
+        `;
+    });
+
+    return htmlElements.join("");
+};
+
+// All issues
+let allIssuesData = [];
+
+const allIssues = () => {
+    // Show spinner
+    showSpinner(true);
+
+    setTimeout(() => {
+        fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
+            .then((res) => res.json())
+            .then((json) => {
+                allIssuesData = json.data;
+                displayIssues(allIssuesData);
+                showSpinner(false); // Hide spinner
+            });
+    }, 100);
+};
+
+const displayIssues = (issues) => {
+    // Show total issue number
+    const issueCount = document.getElementById("issue-count");
+    issueCount.innerText = issues.length;
+
+    const allIssuesContainer = document.getElementById("all-issues-container");
+    allIssuesContainer.innerHTML = "";
+
+    for (let issue of issues) {
+        const btnDiv = document.createElement("div");
+        btnDiv.className = `issue-card bg-white h-full rounded-sm border-t-3 ${issue.status === 'open' ? 'border-[#00a96e]' : 'border-[#A855F7]'} shadow-[0px_3px_6px_0px_#00000014] hover:shadow-lg transition cursor-pointer`;
+        btnDiv.dataset.id = issue.id;
+        btnDiv.innerHTML = `
+        <div class="p-4 space-y-3">
+            <div class="flex justify-between items-center">
+                <div class="flex justify-center items-center w-6 h-6 rounded-full ${issue.status === 'open' ? 'bg-[#CBFADB]' : 'bg-[#ECE4FF]'}">
+                    <img src="${issue.status === 'open' ? './assets/img/circle-dashed.svg' : './assets/img/check-circle.svg'}" alt="${issue.status}" width="16" height="16">
+                </div>
+                <div class="flex justify-center items-center px-4 py-1 h-6 p-2 rounded-[100px] ${issue.priority === 'high' ? 'bg-[#FEECEC]' : issue.priority === 'medium' ? 'bg-[#FFF6D1]' : 'bg-[#EEEFF2]'}">
+                    <span class="text-[12px] font-medium ${issue.priority === 'high' ? 'text-[#EF4444]' : issue.priority === 'medium' ? 'text-[#F59E0B]' : 'text-[#9CA3AF]'} uppercase">${issue.priority}</span>
+                </div>
+            </div>
+            <div class="space-y-3">
+                <div class="space-y-2">
+                    <h3 class="text-[14px] font-semibold leading-[18px] capitalize">${issue.title}</h3>
+                    <p class="text-[#64748B] text-[12px] leading-4">${issue.description}</p>
+                </div>
+                <div class="flex items-center flex-wrap gap-1">${createLabels(issue.labels)}</div>
+            </div>
+        </div>
+        <div class="border-t border-[#e4e4e7]"></div>
+        <div class="p-4 space-y-2">
+            <p class="text-[#64748B] text-[12px] leading-4">#${issue.id} by ${issue.author}</p>
+            <p class="text-[#64748B] text-[12px] leading-4">${new Date(issue.createdAt).toLocaleDateString('en-US')}</p>
+        </div>
+        `;
+
+        allIssuesContainer.append(btnDiv);
+
+        btnDiv.addEventListener("click", () => {
+            openIssueModal(issue.id);
+        });
+    }
+};
+allIssues();
