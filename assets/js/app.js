@@ -181,3 +181,58 @@ const displayIssues = (issues) => {
     }
 };
 allIssues();
+
+// Popup issue modal
+const openIssueModal = (id) => {
+    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
+        .then((res) => res.json())
+        .then((json) => {
+            const issue = json.data;
+            showModal(issue);
+        });
+};
+
+const showModal = (issue) => {
+    const modal = document.getElementById("issue-modal");
+    modal.classList.remove("opacity-0", "pointer-events-none");
+    const modalContent = document.getElementById("issue-modal-content");
+
+    modalContent.innerHTML = `
+        <div class="space-y-6">
+            <div class="space-y-2">
+                <h3 class="text-[24px] font-bold leading-[29px]">${issue.title}</h3>
+                <div class="flex items-center gap-2 text-[#64748B]">
+                    <div class="flex justify-center items-center px-4 py-1 h-6 p-2 rounded-[100px] ${issue.status === 'open' ? 'bg-[#00a96e]' : 'bg-[#A855F7]'}">
+                        <span class="text-[12px] font-medium text-white capitalize">${issue.status}</span>
+                    </div> •
+                    <p class="text-[12px] leading-3.5">${issue.status === 'open' ? "Opened" : "Closed"} by ${issue.author}</p> •
+                    <p class="text-[12px] leading-3.5">${new Date(issue.createdAt).toLocaleDateString()}</p>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-1">${createLabels(issue.labels)}</div>
+            <p class="text-[#64678b] leading-[19px]">${issue.description}</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 bg-[#f8fafc] p-4 gap-4 rounded-lg">
+                <div class="space-y-1">
+                    <p class="text-[#64748B]">Assignee:</p>
+                    <h3 class="font-semibold">${issue.assignee}</h3>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-[#64748B]">Priority:</p>
+                    <div class="flex justify-center items-center w-20 h-6 p-2 rounded-[100px] ${issue.priority === 'high' ? 'bg-[#FEECEC]' : issue.priority === 'medium' ? 'bg-[#FFF6D1]' : 'bg-[#EEEFF2]'}">
+                        <span class="text-[12px] font-medium ${issue.priority === 'high' ? 'text-[#EF4444]' : issue.priority === 'medium' ? 'text-[#F59E0B]' : 'text-[#9CA3AF]'} uppercase">${issue.priority}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-end items-center">
+                <button onclick="closeModal()" class="px-4 py-3 font-semibold bg-[#4A00FF] hover:bg-[#3C00D6] text-white shadow-none rounded-sm cursor-pointer">Close</button>
+            </div>
+        </div>
+    `;
+
+    modal.classList.remove("opacity-0", "pointer-events-none");
+};
+
+const closeModal = () => {
+    const modal = document.getElementById("issue-modal");
+    modal.classList.add("opacity-0", "pointer-events-none");
+};
