@@ -16,3 +16,14 @@ if (loginBtn) {
         }
     });
 }
+
+// Spinner
+const showSpinner = (status) => {
+    if (status == true) {
+        document.getElementById("spinner").classList.remove("hidden");
+        document.getElementById("all-issues-container").classList.add("hidden");
+    } else {
+        document.getElementById("all-issues-container").classList.remove("hidden");
+        document.getElementById("spinner").classList.add("hidden");
+    }
+};
