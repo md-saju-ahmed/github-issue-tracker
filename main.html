@@ -48,6 +48,35 @@
             </div>
         </section>
 
+        <!-- Issues -->
+        <section id="issue-container" class="rounded-lg overflow-hidden shadow-[0px_5px_10px_0px_#00000014]">
+            <!-- Title -->
+            <div class="bg-white flex justify-between items-center flex-wrap gap-2 p-6 border-b border-[#e4e4e7]">
+                <div class="flex items-center gap-2">
+                    <div class="bg-[#ECE4FF] w-12.5 h-12.5 flex justify-center items-center rounded-full">
+                        <img src="./assets/img/aperture.svg" alt="Aperture" width="32" height="32">
+                    </div>
+                    <div class="space-y-1">
+                        <h2 class="text-[20px] font-semibold leading-6"><span id="issue-count">0</span> Issues</h2>
+                        <p class="text-[#64748b] leading-[19px]">Track and manage your project issues</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <p class="flex items-center gap-2 font-medium leading-[19px]">
+                        <span class="block w-3 h-3 bg-[#00a96e] rounded-full"></span> Open
+                    </p>
+                    <p class="flex items-center gap-2 font-medium leading-[19px]">
+                        <span class="block w-3 h-3 bg-[#a855f7] rounded-full"></span> Closed
+                    </p>
+                </div>
+            </div>
+
+            <!-- All Issues -->
+            <div id="all-issues" class="bg-[#fbfbfb] p-6">
+                <!-- All Issue Container -->
+                <div id="all-issues-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3"></div>
+            </div>
+        </section>
     </main>
 
     <!-- Scripts -->
