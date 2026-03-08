@@ -214,7 +214,7 @@ const showModal = (issue) => {
             <div class="grid grid-cols-1 sm:grid-cols-2 bg-[#f8fafc] p-4 gap-4 rounded-lg">
                 <div class="space-y-1">
                     <p class="text-[#64748B]">Assignee:</p>
-                    <h3 class="font-semibold">${issue.assignee}</h3>
+                    <h3 class="font-semibold">${issue.assignee === "" ? "Unassigned" : issue.assignee}</h3>
                 </div>
                 <div class="space-y-1">
                     <p class="text-[#64748B]">Priority:</p>
