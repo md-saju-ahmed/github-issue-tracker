@@ -59,3 +59,32 @@ const toggleFilter = (btnId) => {
         showSpinner(false); // Hide spinner
     }, 100);
 };
+
+// Search issue
+const searchInput = document.getElementById("input-search");
+if (searchInput) {
+    searchInput.addEventListener("input", () => {
+        const searchQuery = searchInput.value.trim().toLowerCase();
+
+        // Set filter button to "All"
+        toggleFilter("all-filter-btn");
+
+        // Display all issues if search input is empty
+        if (searchQuery === "") {
+            displayIssues(allIssuesData);
+            return;
+        }
+
+        // Show spinner
+        showSpinner(true);
+
+        setTimeout(() => {
+            fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchQuery}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    displayIssues(data.data);
+                    showSpinner(false); // Hide spinner
+                });
+        }, 100);
+    });
+};
