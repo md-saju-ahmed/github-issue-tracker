@@ -36,6 +36,20 @@
         </div>
     </header>
 
+    <!-- Main Content -->
+    <main id="main-content" class="max-w-6xl w-full mx-auto my-15 px-4 space-y-4">
+
+        <!-- Filter Buttons -->
+        <section id="filter-btns" class="bg-white p-6 rounded-lg shadow-[0px_1px_6px_0px_#00000014]">
+            <div class="flex items-center flex-wrap gap-2">
+                <button id="all-filter-btn" onclick="toggleFilter('all-filter-btn')" class="bg-[#4A00FF] hover:bg-[#3C00D6] text-white px-3 py-2 rounded-sm border border-[#e4e4e7] w-30 h-10 cursor-pointer">All</button>
+                <button id="open-filter-btn" onclick="toggleFilter('open-filter-btn')" class="text-[#64748b] px-3 py-2 rounded-sm border border-[#e4e4e7] w-30 h-10 cursor-pointer">Open</button>
+                <button id="closed-filter-btn" onclick="toggleFilter('closed-filter-btn')" class="text-[#64748b] px-3 py-2 rounded-sm border border-[#e4e4e7] w-30 h-10 cursor-pointer">Closed</button>
+            </div>
+        </section>
+
+    </main>
+
     <!-- Scripts -->
     <script src="./assets/js/app.js"></script>
 </body>
