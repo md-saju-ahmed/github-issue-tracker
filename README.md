@@ -1,28 +1,72 @@
-## 1️⃣ What is the difference between var, let, and const?
+# GitHub Issue Tracker
 
-| var | let | const |
-|-----|-------|-----|
-| Function-scoped | Block-scoped | Block-scoped |
-| Can be redeclared | Can not be redeclared in the same scope | Can not be redeclared |
-| Can be reassigned | Can be reassigned | Can not be reassigned |
-| Hoisted and initialized with undefined | Hoisted but not initialized | Must be initialized at declaration | 
+A lightweight web application to track GitHub issues, designed to help developers monitor, organize, and manage issues efficiently.
 
-## 2️⃣ What is the spread operator (...)?
+---
 
-The spread operator (`...`) allows us to expand arrays or objects into individual elements. We can use spread operator to copy, merge, or pass elements without modifying the original data.
+## 🌟 Features
 
-## 3️⃣ What is the difference between map(), filter(), and forEach()?
+- **Issue Listing:** View open issues from any GitHub repository.  
+- **Search & Filter:** Filter issues by title, labels, or author.  
+- **Responsive Design:** Works seamlessly on desktop and mobile using Tailwind CSS.  
+- **Interactive UI:** User-friendly interface for managing and viewing issues.  
 
-| map() | filter() | forEach() |
-|-------|----------|-----------|
-| Transforms each element in an array | Returns elements that match a condition | Executes a function for each element |
-| Returns a new array | Returns a new array | Returns undefined |
-| Does not modify the original array | Does not modify the original array | Can modify the original array if changed inside the callback |
+---
 
-## 4️⃣ What is an arrow function?
+## 🛠 Technologies Used
 
-Arrow function is a shorter way to write functions using `=>`. We can use arrow function in our code to short expressions and callbacks.
+- JavaScript (ES6+)  
+- HTML5 & CSS3  
+- Tailwind CSS  
 
-## 5️⃣ What are template literals?
+---
 
-Template literals is a way to create strings enclosed in backticks that allow embedded expressions `${expression}` and multi-line text. We can also call functions inside `${}`
+## 📦 Dependencies
+
+```bash
+- Tailwind CSS
+- Vanilla JavaScript
+````
+
+*(No external frameworks besides Tailwind for styling.)*
+
+---
+
+## 💻 Installation
+
+```bash
+git clone https://github.com/md-saju-ahmed/github-issue-tracker.git
+cd github-issue-tracker
+# Open index.html in your browser or use a local server
+```
+
+---
+
+## 🔗 Live Demo
+
+```text
+https://gh-issue-tracker.netlify.app/
+```
+
+---
+
+## 📂 Project Structure
+
+```bash
+github-issue-tracker-main
+├─ assets
+│  ├─ css
+│  │  ├─ style.css
+│  │  └─ tailwind.init.css
+│  ├─ img
+│  │  ├─ aperture.svg
+│  │  ├─ book.svg
+│  │  ├─ ......
+│  ├─ js
+│  │  └─ app.js
+│  └─ ui
+│     └─ GitHub Issues Tracker.fig
+├─ index.html
+├─ main.html
+└─ README.md
+```
